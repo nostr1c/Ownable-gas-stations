@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="js/script.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet"></head>
+<body>
+    <div id="container">
+        <div id="boss-container">
+            <div id="notify-wrapper">
+                <div id="notify-parent"></div>
+            </div>
+            <div id="modals">
+                <div class="modal" id="money-action">
+                    <div class="modal-header">
+                        <span class="modal-title"></span>
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                    <div class="modal-content">
+                        <span class="modal-subtitle"></span>
+                        <input id="money-action-amount" class="modal-input" type="number" placeholder="Amount">
+                        <div class="modal-btns">
+                            <div id="money-action-btn" class="modal-submit"></div>
+                            <div class="modal-cancel">Cancel</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal" id="confirm">
+                    <div class="modal-header">
+                        <span class="modal-title">Confirmation</span>
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                    <div class="modal-content">
+                        <span class="modal-subtitle">Are you sure you want to do this?</span>
+                        <div class="modal-btns">
+                            <div class="modal-submit modal-yes">Yes</div>
+                            <div class="modal-cancel">No</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="boss-sidemenu">
+                <div id="boss-sidemenu-parent">
+                    <div data-page="home" class="boss-sidemenu-child sidemenu-active">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Home</span>
+                    </div>
+                    <div data-page="store" class="boss-sidemenu-child">
+                        <i class="fa-solid fa-shop"></i>
+                        <span>Shop</span>
+                    </div>
+                    <div data-page="upgrades" class="boss-sidemenu-child">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span>Upgrades</span>
+                    </div>
+                    <div data-page="admin" class="boss-sidemenu-child">
+                        <i class="fa-solid fa-user-gear"></i>
+                        <span>Employees</span>
+                    </div>
+                    <div data-page="logs" class="boss-sidemenu-child">
+                        <i class="fa-solid fa-box-archive"></i>
+                        <span>Logs</span>
+                    </div>
+                </div>
+                <div id="boss-sidemenu-money">
+                    <i class="fa-solid fa-building-columns"></i>
+                    <span>Economy</span>
+                    <i class="fa-solid fa-caret-down"></i>
+                    <div id="money-parent">
+                        <span id="money-amount">5 200 000 SEK</span>
+                        <div id="money-btns">
+                            <div data-action="deposit" class="money-btn">Deposit</div>
+                            <div data-action="withdraw" class="money-btn">Withdraw</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="boss-sidemenu-xp-parent">
+                    <span id="boss-sidemenu-xp-title">Level 2</span>
+                    <div id="boss-sidemenu-xp-bar"><div id="boss-sidemenu-xp-fill"></div></div>
+                </div>
+                <div class="boss-sidemenu-child-close">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span>Close</span>
+                </div>
+            </div>
+            <div id="boss-content">
+                <div class="page" id="buy-wrapper">
+                    <div id="buy-parent">
+                        <div id="buy-actions">
+                            <span id="buy-title">Ron Oil</span>
+                            <span id="buy-info">Would you like to buy Ron Oil for $70,000?</span>
+                            <div id="buy-btns">
+                                <div id="buy-yes">YES</div>
+                                <div id="buy-no">NO</div>
+                            </div>
+                        </div>
+                        <div id="boss-station">
+                            <span id="boss-station-span">Grove Street 56th drive</span>
+                            <img id="boss-station-img" src="assets/GSGS.jpg">
+                            <img id="boss-station-truck" src="assets/truck.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="page" id="home-wrapper">
+                    <div id="home-parent">
+                        <div id="home-tank-container">
+                            <div id="home-tank">
+                                <span id="tank-percent"></span>
+                                <div id="fill-svg">
+                                    <svg width="100%" height="100%" id="svg" viewBox="0 0 1440 690" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150"><path d="M 0,700 C 0,700 0,233 0,233 C 67.42583732057417,213.20095693779905 134.85167464114835,193.40191387559807 249,196 C 363.14832535885165,198.59808612440193 524.0191387559809,223.59330143540672 622,245 C 719.9808612440191,266.4066985645933 755.0717703349281,284.22488038277515 842,265 C 928.9282296650719,245.77511961722487 1067.6937799043062,189.50717703349284 1176,178 C 1284.3062200956938,166.49282296650716 1362.153110047847,199.74641148325358 1440,233 C 1440,233 1440,700 1440,700 Z" stroke="none" stroke-width="0" fill="#fcb900" fill-opacity="0.53" class="transition-all duration-300 ease-in-out delay-150 path-0"></path><path d="M 0,700 C 0,700 0,466 0,466 C 84.3732057416268,512.133971291866 168.7464114832536,558.2679425837321 265,553 C 361.2535885167464,547.7320574162679 469.3875598086124,491.06220095693783 556,477 C 642.6124401913876,462.93779904306217 707.7033492822966,491.48325358851673 820,510 C 932.2966507177034,528.5167464114833 1091.799043062201,537.0047846889952 1203,528 C 1314.200956937799,518.9952153110048 1377.1004784688994,492.4976076555024 1440,466 C 1440,466 1440,700 1440,700 Z" stroke="none" stroke-width="0" fill="#fcb900" fill-opacity="1" class="transition-all duration-300 ease-in-out delay-150 path-1"></path></svg>
+                                </div>
+                                <div id="fill-bottom"></div>
+                            </div>
+                            <div id="el-tank">
+                                <span id="el-percent">10%</span>
+                                <div id="el-fill">
+                                    <div id="el-top"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="home-economy-container">
+                            <div class="admin-area home">
+                                <div class="admin-form-row">
+                                    <div class="admin-form">
+                                        <span class="admin-form-title">Station name</span>
+                                        <input class="admin-form-input" type="text" placeholder="Ron oil">
+                                        <div class="admin-form-save">Save</div>
+                                    </div>
+                                    <div class="admin-form">
+                                        <span class="admin-form-title">Sell station</span>
+                                        <input class="admin-form-input" type="number" placeholder="0" id="admin-form-sale-input">
+                                        <div data-forsale="false" class="admin-form-toggle" id="admin-form-sale-toggle">
+                                            <i class="fa-regular fa-circle-dot"></i>
+                                            <span class="admin-form-toggle-span">Not for sale</span>
+                                        </div>
+                                        <div class="admin-form-save">Save</div>
+                                    </div>
+                                </div>
+                                <div class="admin-form">
+                                    <span class="admin-form-title">Change blip color</span>
+                                        <div class="admin-form-blip-colors"></div>
+                                    <div class="admin-form-save">Save</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page" id="store-wrapper">
+                    <div class="store-parent">
+                        <div data-item="tank" class="store-child">
+                            <div class="store-labels">
+                                <div class="store-label">LVL 0</div>
+                                <div class="store-label">599 SEK</div>
+                            </div>
+                            <div class="store-child-img">
+                                <img draggable="false" src="assets/oil-tank.png" class="store-child-img">
+                            </div>
+                            <span class="store-child-span">2000 litres tank</span>                     
+                        </div>
+                        <div data-item="jerrycan" class="store-child unavailable">
+                            <div class="store-labels">
+                                <div class="store-label">LVL 5</div>
+                                <div class="store-label">599 SEK</div>
+                            </div>
+                            <div class="store-child-img">
+                                <img draggable="false" src="assets/jerry-can.png" class="store-child-img">
+                            </div>
+                            <span class="store-child-span">Jerry can</span>
+                        </div>
+                        <div data-item="electricity" class="store-child unavailable">
+                            <div class="store-labels">
+                                <div class="store-label">LVL 5</div>
+                                <div class="store-label">599 SEK</div>
+                            </div>
+                            <div class="store-child-img">
+                                <img draggable="false" src="assets/charging.png" class="store-child-img">
+                            </div>
+                            <span class="store-child-span">Electricity</span>                      
+                        </div>
+                    </div>
+                </div>
+                <div class="page" id="upgrades-wrapper">
+                    <div id="upgrades-container">
+                        <div class="upgrades-parent">
+                            <div class="upgrade-header">
+                                <img draggable="false" src="assets/oil-tank.png">
+                                <span>Tank</span>
+                            </div>
+                            <div class="upgrade-map">
+                                <div class="upgrade-stage first filled"></div>
+                                <div class="upgrade-stage filled"></div>
+                                <div class="upgrade-stage filled"></div>
+                                <div class="upgrade-stage"></div>
+                                <div class="upgrade-stage"></div>
+                            </div>
+                            <div class="upgrade-texts">
+                                <div class="upgrade-text">
+                                    <span class="upgrade-lvl">Level 0</span>
+                                    <div class="upgrade-info">
+                                        <span class="upgrade-title">Tank capacity:</span>
+                                        <span class="upgrade-amount">100 000 litres</span>
+                                    </div>
+                                </div>
+                                <div class="upgrade-text">
+                                    <span class="upgrade-lvl">Level 1</span>
+                                    <div class="upgrade-info">
+                                        <span class="upgrade-title">Tank capacity:</span>
+                                        <span class="upgrade-amount">200 000 litres</span>
+                                    </div>
+                                </div>
+                                <div class="upgrade-text">
+                                    <span class="upgrade-lvl">Level 2</span>
+                                    <div class="upgrade-info">
+                                        <span class="upgrade-title">Tank capacity:</span>
+                                        <span class="upgrade-amount">300 000 litres</span>
+                                    </div>
+                                </div>
+                                <div class="upgrade-text">
+                                    <span class="upgrade-lvl">Level 3</span>
+                                    <div class="upgrade-info">
+                                        <span class="upgrade-title">Tank capacity:</span>
+                                        <span class="upgrade-amount">400 000 litres</span>
+                                    </div>
+                                </div>
+                                <div class="upgrade-text">
+                                    <span class="upgrade-lvl">Level 4</span>
+                                    <div class="upgrade-info">
+                                        <span class="upgrade-title">Tank capacity:</span>
+                                        <span class="upgrade-amount">500 000 litres</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="upgrades-parent">
+                            <div class="upgrade-header">
+                                <img draggable="false" src="assets/jerry-can.png">
+                                <span>Jerry can</span>
+                            </div>
+                            <div class="upgrade-map">
+                                <div class="upgrade-stage first filled"></div>
+                                <div class="upgrade-stage filled"></div>
+                                <div class="upgrade-stage"></div>
+                                <div class="upgrade-stage"></div>
+                                <div class="upgrade-stage"></div>
+                            </div>
+                            <div class="upgrade-texts">
+                                <div class="upgrade-text">
+                                    <span class="upgrade-lvl">Level 0</span>
+                                    <div class="upgrade-info">
+                                        <span class="upgrade-title">Can capacity:</span>
+                                        <span class="upgrade-amount">5 litres</span>
+                                    </div>
+                                </div>
+                                <div class="upgrade-text">
+                                    <span class="upgrade-lvl">Level 1</span>
+                                    <div class="upgrade-info">
+                                        <span class="upgrade-title">Can capacity:</span>
+                                        <span class="upgrade-amount">10 litres</span>
+                                    </div>
+                                </div>
+                                <div class="upgrade-text">
+                                    <span class="upgrade-lvl">Level 2</span>
+                                    <div class="upgrade-info">
+                                        <span class="upgrade-title">Can capacity:</span>
+                                        <span class="upgrade-amount">15 litres</span>
+                                    </div>
+                                </div>
+                                <div class="upgrade-text">
+                                    <span class="upgrade-lvl">Level 3</span>
+                                    <div class="upgrade-info">
+                                        <span class="upgrade-title">Can capacity:</span>
+                                        <span class="upgrade-amount">20 litres</span>
+                                    </div>
+                                </div>
+                                <div class="upgrade-text">
+                                    <span class="upgrade-lvl">Level 4</span>
+                                    <div class="upgrade-info">
+                                        <span class="upgrade-title">Can capacity:</span>
+                                        <span class="upgrade-amount">40 litres</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="upgrades-parent">
+                            <div class="upgrade-header">
+                                <img draggable="false" src="assets/charging.png">
+                                <span>Electricity</span>
+                            </div>
+                            <div class="upgrade-map">
+                                <div class="upgrade-stage first filled"></div>
+                                <div class="upgrade-stage"></div>
+                                <div class="upgrade-stage"></div>
+                                <div class="upgrade-stage"></div>
+                                <div class="upgrade-stage"></div>
+                            </div>
+                            <div class="upgrade-texts">
+                                <div class="upgrade-text">
+                                    <span class="upgrade-lvl">Level 0</span>
+                                    <div class="upgrade-info">
+                                        <span class="upgrade-title">Voltage:</span>
+                                        <span class="upgrade-amount">30v</span>
+                                    </div>
+                                </div>
+                                <div class="upgrade-text">
+                                    <span class="upgrade-lvl">Level 1</span>
+                                    <div class="upgrade-info">
+                                        <span class="upgrade-title">Voltage:</span>
+                                        <span class="upgrade-amount">50v</span>
+                                    </div>
+                                </div>
+                                <div class="upgrade-text">
+                                    <span class="upgrade-lvl">Level 2</span>
+                                    <div class="upgrade-info">
+                                        <span class="upgrade-title">Voltage:</span>
+                                        <span class="upgrade-amount">100v</span>
+                                    </div>
+                                </div>
+                                <div class="upgrade-text">
+                                    <span class="upgrade-lvl">Level 3</span>
+                                    <div class="upgrade-info">
+                                        <span class="upgrade-title">Voltage:</span>
+                                        <span class="upgrade-amount">1000v litres</span>
+                                    </div>
+                                </div>
+                                <div class="upgrade-text">
+                                    <span class="upgrade-lvl">Level 4</span>
+                                    <div class="upgrade-info">
+                                        <span class="upgrade-title">Voltage:</span>
+                                        <span class="upgrade-amount">55550v</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page" id="logs-wrapper">
+                    <div id="logs-container">
+                        <table cellspacing="0" id="logs-table">
+                            <tr>
+                                <th>Employee</th>
+                                <th>Action</th>
+                                <th>Time</th>
+                            </tr>
+                            <tr>
+                                <td>Roffe Lundgren</td>
+                                <td>Upgraded gas can to level 3.</td>
+                                <td>21/09-2023 14:44</td>
+                            </tr>
+                            <tr>
+                                <td>Roffe Lundgren</td>
+                                <td>Upgraded gas can to level 3.</td>
+                                <td>21/09-2023 14:44</td>
+                            </tr>                            <tr>
+                                <td>Roffe Lundgren</td>
+                                <td>Upgraded gas can to level 3.</td>
+                                <td>21/09-2023 14:44</td>
+                            </tr>
+                            <tr>
+                                <td>Roffe Lundgren</td>
+                                <td>Upgraded gas can to level 3.</td>
+                                <td>21/09-2023 14:44</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="page" id="admin-wrapper">
+                    <div id="admin-areas">
+                        <div class="admin-area">
+                            <span class="admin-title">Employees</span>
+                            <div id="users-parent">
+                                <div class="users-child">
+                                    <i class="fa-solid fa-user users-icon"></i>
+                                    <span class="users-child-name">Roffe Lundgren</span>
+                                    <div class="users-child-permissions">
+                                        <div class="users-child-permission">
+                                            <span class="users-child-permission-title">Restock</span>
+                                            <input type="checkbox" class="users-child-permission-checkbox">
+                                        </div>
+                                        <div class="users-child-permission">
+                                            <span class="users-child-permission-title">Economy</span>
+                                            <input type="checkbox" class="users-child-permission-checkbox">
+                                        </div>
+                                        <div class="users-child-permission">
+                                            <span class="users-child-permission-title">Settings</span>
+                                            <input type="checkbox" class="users-child-permission-checkbox">
+                                        </div>
+                                        <div class="users-child-remove">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="users-add-child-wrapper">
+                                    <div id="users-add-child">
+                                        <i class="fa-solid fa-user-plus"></i>
+                                        <input type="text" placeholder="Add employee (ID)">
+                                        <div id="users-add-btns">
+                                            <div id="users-add-save">
+                                                <i class="fa-solid fa-sd-card"></i>
+                                            </div>
+                                            <div id="users-add-cancel">
+                                                <i class="fa-solid fa-xmark"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="users-add">
+                                    <i class="fa-solid fa-plus"></i>
+                                    <span>Add Employee</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="pump-wrapper">
+            <div id="text-area">
+                <span>2567 SEK</span>
+            </div>
+            <div id="nozzle-area"></div>
+            <img id="pump-img" src="assets/gaspump.png">
+            <img id="nozzle-img" src="assets/gasnozzle.png">
+        </div>
+    </div>
+</body>
+</html>
